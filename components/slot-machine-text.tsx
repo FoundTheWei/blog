@@ -44,20 +44,12 @@ export default function SlotMachineText() {
   const longestThought = thoughts.reduce((a, b) => a.length > b.length ? a : b)
 
   return (
-    <span className="relative inline-block">
-      {/* Invisible spacer to maintain consistent width */}
-      <span className="invisible whitespace-nowrap" aria-hidden="true">
-        {longestThought}
-      </span>
-      
-      {/* Animated text - single smooth transition */}
-      <span className="absolute inset-0 flex items-center justify-center">
-        <span
-          key={currentIndex}
-          className="whitespace-nowrap animate-fade-in bg-lime-400 text-black px-2 py-0.5"
-        >
-          {thoughts[currentIndex]}
-        </span>
+    <span className="inline-block">
+      <span
+        key={currentIndex}
+        className="whitespace-nowrap animate-fade-in bg-lime-400 text-black px-2 py-0.5"
+      >
+        {thoughts[currentIndex]}
       </span>
       
       <style jsx>{`
