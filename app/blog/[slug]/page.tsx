@@ -22,18 +22,19 @@ function getAdjacentPosts(currentSlug: string) {
   return { prevPost, nextPost }
 }
 
-export default function BlogPostPage({
+export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const post = getPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getPostBySlug(slug)
 
   if (!post) {
     notFound()
   }
 
-  const { prevPost, nextPost } = getAdjacentPosts(params.slug)
+  const { prevPost, nextPost } = getAdjacentPosts(slug)
 
   return (
     <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
