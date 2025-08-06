@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { ThemeToggle } from "./theme-toggle"
 
 export default function Header() {
   return (
@@ -9,17 +8,14 @@ export default function Header() {
           <Link href="/" className="text-base sm:text-xl font-bold tracking-tighter">
             <span className="link-underline link-underline-black">FOUNDTHEWEI</span>
           </Link>
-          <div className="flex items-center space-x-2 sm:space-x-6">
-            <nav className="space-x-2 sm:space-x-6 text-xs sm:text-sm font-medium">
-              <Link href="/">
-                <span className="link-underline link-underline-black">Posts</span>
-              </Link>
-              <Link href="/about">
-                <span className="link-underline link-underline-black">About</span>
-              </Link>
-            </nav>
-            <ThemeToggle />
-          </div>
+          <nav className="space-x-2 sm:space-x-6 text-xs sm:text-sm font-medium">
+            <Link href="/">
+              <span className="link-underline link-underline-black">Posts</span>
+            </Link>
+            <Link href="/about">
+              <span className="link-underline link-underline-black">About</span>
+            </Link>
+          </nav>
         </div>
       </div>
     </header>

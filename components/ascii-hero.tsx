@@ -213,7 +213,7 @@ export default function ASCIIHero() {
         {displayPattern.map((line, i) => (
           <div 
             key={i} 
-            className="whitespace-pre text-neutral-900 dark:text-neutral-200 hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-300"
+            className="whitespace-pre text-neutral-200 hover:text-lime-400 transition-all duration-300"
             style={{
               animation: isPlaying ? `gentle-float ${4 + (i * 0.5)}s ease-in-out infinite` : 'none',
               animationDelay: `${i * 0.15}s`,
@@ -232,7 +232,7 @@ export default function ASCIIHero() {
         }`}
       >
         {/* Pattern dots indicator */}
-        <div className="flex items-center gap-3 px-3 py-2 bg-white/80 dark:bg-black/80 backdrop-blur-sm rounded-full border border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center gap-3 px-3 py-2 bg-black/80 backdrop-blur-sm rounded-full border border-neutral-800">
           <button
             onClick={prevPattern}
             className="p-1 hover:text-lime-500 transition-colors"
@@ -249,7 +249,7 @@ export default function ASCIIHero() {
                 className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                   index === currentPattern 
                     ? 'bg-lime-500 w-3' 
-                    : 'bg-neutral-400 hover:bg-neutral-600 dark:hover:bg-neutral-300'
+                    : 'bg-neutral-400 hover:bg-neutral-300'
                 }`}
                 aria-label={`Go to ${pattern.name} pattern`}
                 title={pattern.name}
@@ -265,7 +265,7 @@ export default function ASCIIHero() {
             <ChevronRight className="w-4 h-4" />
           </button>
 
-          <div className="w-px h-4 bg-neutral-300 dark:bg-neutral-700" />
+          <div className="w-px h-4 bg-neutral-700" />
           
           <button
             onClick={() => setIsPlaying(!isPlaying)}
