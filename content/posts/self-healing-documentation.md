@@ -1,207 +1,199 @@
 ---
-title: "Building Self-Healing Documentation: A Three-Layer Approach with Claude Code and Haiku"
+title: "Self-Healing Documentation: When Your Docs Fix Themselves During Dinner"
 date: "2025-08-06"
-excerpt: "I recently tested whether Claude Code could identify and fix documentation inconsistencies without manual intervention. The system found 20 issues across 4 client folders and successfully resolved 15 of them automatically."
+excerpt: "I asked Claude to 'do a deep review of each client and create a list of issues we can fix.' 45 minutes later, it had found 20 issues and fixed 15 of them. While I was making dinner."
 tags: ["Documentation Systems", "AI Tools", "Process Automation"]
 readingTime: 7
 ---
 
-I recently tested whether Claude Code could identify and fix documentation inconsistencies without manual intervention. The system found 20 issues across 4 client folders and successfully resolved 15 of them automatically. Here's the architecture and methodology.
+> **Context**: 4 clients. 400+ documents. Documentation that's always slightly broken. Until it started fixing itself.
 
-## The Initial Test
+I asked Claude to "do a deep review of each client and create a list of issues we can fix."
 
-**Hypothesis:** By combining specialized audit tools with execution capabilities, Claude Code could identify and resolve documentation inconsistencies autonomously.
+45 minutes later, it had found 20 issues and fixed 15 of them. While I was making dinner.
 
-**Test command:** "Do a deep review of each client and create a list of issues we can fix"
+## What Actually Happened
 
-### Results:
-- Client audits completed: 4
-- Issues identified: 20
-- Issues auto-resolved: 15
-- Time elapsed: 45 minutes
-- Manual fixes required: 5 (data calculation dependencies)
+**The command I typed**: "Do a deep review of each client and create a list of issues we can fix"
 
-## System Architecture
+**What Claude did**:
+- Audited 4 client folders
+- Found 20 documentation issues
+- Fixed 15 automatically
+- Left me notes about the 5 it couldn't fix
+- All in 45 minutes
 
-The solution uses three integrated layers:
+The 5 it couldn't fix? They needed actual human judgment about financial calculations. Fair enough.
+
+## The Three-Layer Stack That Makes This Work
 
 ### Layer 1: Haiku-Powered Analysis Tools
 
-These Python scripts use Claude Haiku's API for semantic understanding:
+These Python scripts use Claude Haiku (the cheap, fast model) for semantic understanding:
 
 ```python
 def audit_test_documentation(client_name: str) -> List[Issue]:
     """
-    Identifies discrepancies between claims and actual documentation.
+    Identifies when your docs are lying to you.
     
-    Example: Detects "40+ tests documented" claim when only 20 test files exist.
-    Returns: Specific issues with severity and fix recommendations
+    Example: "40+ tests documented" but only 20 test files exist
+    Returns: Specific issues with "here's how to fix this"
     """
 ```
 
-**Key capability:** Understanding context beyond pattern matching. The tool recognizes that "winning," "winner," and "successful" represent the same concept but flags the inconsistency.
+The magic: It understands that "winning," "winner," and "successful" mean the same thing but flags the inconsistency. A regex would never catch that.
 
 ### Layer 2: Specialized Subagents
 
-Behavioral definitions that tell Claude Code what each agent does:
+These are just markdown files that tell Claude what to do:
 
 ```markdown
 # test-analyzer.md
-Function: Audit test documentation completeness and consistency
+Function: Find where test docs are broken or lying
 Tools: 
-  - intelligent_pattern_extractor (finds tests in any format)
-  - data_normalizer (identifies terminology variations)
-Output: Actionable issues with specific locations and fix strategies
+  - intelligent_pattern_extractor (finds tests hidden in prose)
+  - data_normalizer (catches "winner" vs "winning" nonsense)
+Output: Here's what's broken and exactly how to fix it
 ```
 
-### Layer 3: Orchestration and Execution
+### Layer 3: Claude Code Orchestrates Everything
 
-Claude Code coordinates the workflow:
+Claude Code is the conductor:
+- Deploys the right subagent for each audit
+- Collects all the issues into one list
+- Fixes what it can
+- Tells me what it can't
 
-1. Deploys subagents for targeted audits
-2. Aggregates findings into prioritized task list
-3. Executes fixes using appropriate tools
-4. Verifies completion
+## What It Found (And Fixed)
 
-## Findings by Client
+### Client A: 5 issues, all fixed
+- Missing test summaries for Batches 1-3 → Generated from actual test files
+- "Winner" vs "winning" vs "successful" → Standardized everything
+- Outdated frontmatter → Applied new template
+- Missing financial fields → Calculated from existing data
+- Messy midweek files → Restructured automatically
 
-### Client A (5 issues, 5 resolved)
+### Client B: 7 issues, 3 fixed
+- Claims "40+ tests" but only has 20 → Added note about historical tests
+- Broken timeline links → Fixed references
+- Test ID chaos → Batch renamed everything
+- Missing folders → Can't create from nothing (fair)
+- No financial data → Needs source numbers (also fair)
 
-| Issue | Type | Resolution | Method |
-|-------|------|------------|---------|
-| Missing test summaries (Batches 1-3) | Structural | Created | Generated from test files |
-| Status value variations | Consistency | Standardized | Bulk find-replace with validation |
-| Outdated frontmatter schema | Format | Upgraded | Template application |
-| Missing financial fields | Incomplete | Added | Calculated from existing data |
-| Unstructured midweek files | Format | Restructured | Content parsing and reformatting |
+### Client C & D: Simple Fixes
+Dashboard was in wrong folder. Empty files deleted. References fixed. Boring but necessary.
 
-### Client B (7 issues, 3 resolved)
+## The Difference Between Smart and Dumb Detection
 
-| Issue | Type | Resolution | Method |
-|-------|------|------------|---------|
-| Test count mismatch (claims 40+, has 20) | Data integrity | Documented | Added note about historical tests |
-| Broken timeline references | Dead links | Fixed | Updated to existing documents |
-| Test ID inconsistencies | Format | Standardized | Batch rename operation |
-| Missing midweek folders | Structural | Pending | Requires content creation |
-| Uncalculated financial data | Incomplete | Pending | Needs source data |
+**What a normal script sees:**
+- File exists ✓/✗
+- Link works ✓/✗
+- Field present ✓/✗
 
-### Client C (2 issues, 2 resolved)
-
-Simple fixes: Dashboard relocated to proper folder, empty file removed.
-
-### Client D (4 issues, 4 resolved)
-
-Navigation fixes and reference corrections completed automatically.
-
-## How Semantic Understanding Changes Detection
-
-**Traditional script capabilities:**
-- File exists/doesn't exist
-- Link works/broken
-- Field present/missing
-
-**Haiku-enhanced detection:**
+**What Haiku-powered detection sees:**
 - "This document claims X but evidence shows Y"
-- "These three terms mean the same thing but aren't standardized"
+- "These three terms mean the same thing"
 - "Financial impact mentioned but never calculated"
-- "Pattern described in prose but not in structured data"
+- "Test result buried in prose, not in test file"
 
-### Example:
-
-```bash
-# Traditional: Misses this entirely
+Real example from my vault:
+```markdown
+# Normal script: Sees nothing wrong
 "December testing showed remarkable results with simplified checkout"
 
-# Haiku-powered: Extracts and flags
+# Haiku: Finds the hidden test
 Issue: Test result in narrative not in test file
 Location: Batch_Summary.md, line 47
-Suggested fix: Create Test_12_Simplified_Checkout.md
-Confidence: High (clear test description)
+Fix: Create Test_12_Simplified_Checkout.md
+Why: Clear test description without documentation
 ```
 
-## Implementation Methodology
+## How I Built This (So You Can Too)
 
-### Phase 1: Build Audit Tools
+### Phase 1: Built specific audit tools
+- `audit_test_claims()` - Catches lies about test counts
+- `check_terminology_consistency()` - Finds "winner/winning" disasters
+- `validate_financial_data()` - Spots placeholder numbers
+- `scan_navigation_integrity()` - Tests every single link
 
-Created specific analyzers for common problems:
-- `audit_test_claims()` - Verifies documented counts match files
-- `check_terminology_consistency()` - Finds variations of same concept
-- `validate_financial_data()` - Identifies placeholder values
-- `scan_navigation_integrity()` - Tests all cross-references
+### Phase 2: Told Claude what each agent does
+Just markdown files describing capabilities. Nothing fancy.
 
-### Phase 2: Define Subagent Behaviors
+### Phase 3: Let it run wild
+First on test data. Then on one client. Then on everything.
 
-Wrote markdown specifications for each agent's capabilities and tool access.
+### Phase 4: Watch it work
+Full audit across all clients. Made dinner. Came back to fixed docs.
 
-### Phase 3: Test and Refine
+## The Economics That Matter
 
-Ran iterative tests, adding error handling and edge case management.
+**Caching saves everything:**
+- 67% cache hit rate
+- 65% cost reduction
+- 3x faster
 
-### Phase 4: Production Run
+**Graceful failure is mandatory:**
+- Haiku fails → Pattern matching backup
+- Can't fix → Creates manual instructions
+- Not sure → Flags for human review
 
-Full audit and fix cycle across all clients.
+**Batching prevents disasters:**
+Collect all issues first. Then fix. Otherwise you create cascade failures.
 
-## Key Technical Insights
+## Real Numbers
 
-**Caching critical for cost control:**
-```
-cache_hit_rate = 67%
-api_cost_reduction = 65%
-performance_improvement = 3x
-```
+**Before:** Manual audit finds 5-8 obvious issues
+**After:** Auto audit finds 20 issues including subtle semantic problems
 
-**Graceful degradation essential:**
-- Haiku API fails → falls back to pattern matching
-- Can't auto-fix → creates manual fix instructions
-- Uncertain about fix → flags for human review
+**Before:** Each fix takes understanding → changing → verifying
+**After:** 75% of fixes happen automatically with verification
 
-**Batching improves reliability:** Instead of fixing issues as found, collecting all issues first prevents cascade failures and allows prioritization.
-
-## Measurable Improvements
-
-**Before:** Manual audit would identify 5-8 surface-level issues  
-**After:** Automated audit finds 20 issues including semantic problems
-
-**Before:** Each fix required understanding context, making change, verifying  
-**After:** 75% of fixes execute automatically with verification
-
-**Time analysis:**
+**Time saved:**
 - Manual audit and fix: 2-3 days
-- Automated audit and fix: 45 minutes
+- Automated: 45 minutes
 - Remaining manual work: 2 hours
 
-## Building Your Own Self-Healing Documentation
+That's 20 hours → 3 hours per month. 17 hours to do actual work.
 
-**Required components:**
-1. Detection tools that understand your specific documentation patterns
+## Build Your Own
+
+**You need:**
+1. Detection tools that understand YOUR patterns
 2. Execution tools that can modify files safely
-3. Orchestration layer that coordinates detection and fixing
-4. Verification methods that confirm fixes worked
+3. Something to coordinate detection and fixing
+4. Verification that confirms fixes worked
 
-**Start small:**
-- Pick one type of recurring issue
-- Build detection for that specific problem
-- Add execution capability
-- Test thoroughly before expanding
+**Start stupid simple:**
+1. Pick ONE recurring issue
+2. Build detection for that specific thing
+3. Add ability to fix it
+4. Test until you trust it
+5. Then expand
 
-## Current Limitations
+## What It Can't Do (Yet)
 
-The system cannot:
-- Create content requiring human judgment
+The 25% it can't fix:
+- Create content needing human judgment
 - Calculate metrics without source data
 - Resolve conflicting information without rules
-- Fix issues requiring external system access
+- Fix things requiring external systems
 
-These represent 25% of discovered issues, requiring manual intervention.
+These still need me. For now.
 
-## Conclusion
+## The Real Discovery
 
-The combination of semantic understanding (via Haiku) and execution capability (via Claude Code) creates a system that can identify and resolve documentation inconsistencies autonomously. The key innovation isn't the individual components but their integration into a self-correcting workflow.
+75% of documentation issues are mechanical inconsistencies. Once you can detect them semantically (not just with regex), they're trivial to fix programmatically.
 
-> 75% of documentation issues are mechanical inconsistencies that, once detected with semantic understanding, can be fixed programmatically.
+This means good documentation isn't about perfect initial creation. It's about continuous, automated correction.
 
-This suggests that maintaining high-quality documentation is less about perfect initial creation and more about continuous, automated correction.
+Your docs can be messy. As long as they're self-healing messy.
 
-**Next research direction:** Expanding the system to prevent issues by validating changes before they're committed.
+## What's Next
 
-This approach reduced documentation maintenance from 20 hours/month to 3 hours/month while improving consistency. The tools and methodology are adaptable to any structured documentation system where patterns can be identified and rules can be defined.
+Working on: Preventing issues by validating changes BEFORE they're committed. Why fix what you can prevent?
+
+**The bottom line:** Documentation maintenance went from 20 hours/month to 3 hours/month. And it's actually more consistent now.
+
+The tools work with any structured documentation where you can define patterns and rules. Which is basically everything if you squint right.
+
+Your documentation doesn't need to be perfect. It just needs to fix itself while you sleep.

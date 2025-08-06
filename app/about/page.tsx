@@ -170,43 +170,66 @@ export default function AboutPage() {
         {/* Main Content */}
         <div className="space-y-12">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tighter mb-4">
-              Killing busywork with AI.
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tighter mb-4 text-lime-400">
+              Never be broke again.
             </h1>
             <p className="text-xl text-muted-foreground">
-              Documenting what works.
+              Never trust a single income stream.
             </p>
           </div>
 
           <div className="prose prose-lg max-w-none space-y-6">
-            <p className="text-lg leading-relaxed">
-              I document AI workflows that actually work. Model comparisons, system building, 
-              automation patterns. No theory, just what ships.
+            <p className="text-lg leading-relaxed text-neutral-300">
+              March 2020. Lost my job. Sent 1,847 applications. Got rejected 1,846 times.
             </p>
             
-            <p className="text-lg leading-relaxed">
-              Every post is an experiment. Every commit is tracked. This entire blog is built 
-              with Claude Code because that's the point—using AI to document using AI.
+            <p className="text-lg leading-relaxed text-neutral-300">
+              Now I run three income streams using AI as my shadow workforce. Every post here 
+              is a system that keeps me from ever being vulnerable again. No motivation. No hustle porn. 
+              Just code that prevents poverty.
             </p>
             
-            <p className="text-lg leading-relaxed">
-              CRO strategist by day. Workflow automator by necessity. If it kills a meeting or 
-              speeds a decision, it goes here.
+            <p className="text-lg leading-relaxed text-neutral-300">
+              This blog is built with Claude Code because I use AI to document using AI to run 
+              multiple jobs without burning out. If you've been broke, you'll understand. If you haven't, 
+              you're lucky.
             </p>
+            
+            <div className="text-center py-6">
+              <code className="text-lime-400 bg-black px-4 py-2 rounded font-mono text-sm">
+                $ echo "The fear never leaves. You just build better defenses."
+              </code>
+            </div>
+            
+            {/* Primary CTA - README */}
+            <div className="text-center pt-6">
+              <Link 
+                href="/blog/00-readme-why-this-blog-exists"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-lime-500 to-lime-400 text-black font-bold text-lg rounded-lg hover:from-lime-400 hover:to-lime-300 transition-all hover:scale-105 shadow-lg"
+              >
+                <span className="font-mono text-sm">README.md</span>
+                <span>Start Here</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
 
-          <div className="text-center pt-8 border-t border-border">
+          {/* Divider */}
+          <div className="border-t border-border"></div>
+
+          {/* Secondary CTAs */}
+          <div className="text-center">
             <div className="flex justify-center gap-4">
               <Link 
                 href="/"
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-lime-500 text-black font-bold rounded-lg hover:bg-lime-400 transition-all hover:scale-105"
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-neutral-900 text-lime-500 font-bold rounded-lg hover:bg-neutral-800 transition-all hover:scale-105 border border-neutral-700"
               >
-                Read the posts
+                Read all posts
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 href="/commits"
-                className="group inline-flex items-center gap-2 px-6 py-3 border border-lime-500 text-lime-500 font-bold rounded-lg hover:bg-lime-500 hover:text-black transition-all hover:scale-105"
+                className="group inline-flex items-center gap-2 px-6 py-3 border border-lime-500/30 text-lime-500 font-bold rounded-lg hover:bg-lime-500/10 transition-all hover:scale-105"
               >
                 See the commits
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

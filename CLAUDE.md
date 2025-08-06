@@ -4,7 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a design-focused blog built with Next.js 15, React 19, and Tailwind CSS. The blog features animated ASCII art, advanced filtering, and a unique visual design.
+This is a personal blog about AI automation, knowledge management, and making tech work while having three jobs. Built with Next.js 15, React 19, and Tailwind CSS. Features animated ASCII art because why not.
+
+## Blog Voice & Style
+
+The blog has a specific conversational tone:
+- **Real talk, not corporate speak** - "This broke my brain" not "This was transformative"
+- **Time is the currency** - Focus on hours saved, not dollars earned
+- **Practical over perfect** - "Working automation is income" not "Best practices"
+- **Context matters** - Start posts with real situations (3am debugging, client meetings, etc.)
+- **Self-deprecating honesty** - Admit when things are held together with duct tape
+- **No unnecessary formality** - Use contractions, casual language, occasional profanity where it fits
+
+Example opening: "400+ documents. 4 clients. 3 jobs. 1 brain trying not to melt."
 
 ## Commands
 
@@ -70,6 +82,7 @@ The project auto-syncs with v0.dev and deploys via Vercel. Manual deployments sh
 
 ### Never commit:
 - API keys, tokens, or secrets (use environment variables)
+- Client names or identifying information (use "Client A", "Client_Redacted", etc.)
 - Personal information (emails, phone numbers, addresses)
 - Database credentials or connection strings
 - Private server URLs or internal network details
@@ -81,3 +94,4 @@ The project auto-syncs with v0.dev and deploys via Vercel. Manual deployments sh
 - Review changes before committing
 - Keep commits focused on site functionality and design
 - Avoid debugging information that reveals system details
+- Redact client names in all blog posts and examples
