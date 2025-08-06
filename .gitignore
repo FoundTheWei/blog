@@ -16,11 +16,24 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
-.env*
+# env files (NEVER commit these)
+.env
+.env.*
+.env.local
+.env.production
+.env.development
 
 # vercel
 .vercel
+
+# Security - never commit these
+*.key
+*.pem
+*.cert
+secrets/
+credentials/
+config.local.js
+config.prod.js
 
 # typescript
 *.tsbuildinfo

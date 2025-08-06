@@ -62,3 +62,21 @@ git push origin master:main  # Push local master to remote main
 ## Deployment
 
 The project auto-syncs with v0.dev and deploys via Vercel. Manual deployments should be avoided as v0.dev manages the deployment pipeline.
+
+## Security Guidelines
+
+**IMPORTANT**: This repository is public. All commits are visible on the `/commits` page.
+
+### Never commit:
+- API keys, tokens, or secrets (use environment variables)
+- Personal information (emails, phone numbers, addresses)
+- Database credentials or connection strings
+- Private server URLs or internal network details
+- Any `.env` files with real values
+
+### Best practices:
+- Keep all sensitive configuration in Vercel environment variables
+- Use placeholder values in example configs
+- Review changes before committing
+- Keep commits focused on site functionality and design
+- Avoid debugging information that reveals system details
