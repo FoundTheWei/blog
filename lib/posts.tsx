@@ -159,7 +159,6 @@ const allPosts: Post[] = [
     date: "2025-08-05",
     excerpt:
       "Remember my post about CLAUDE.md files for every folder? Well, something wild happened. These context files I was obsessing over just became... executable.",
-    heroImage: "/claude-code-session.png",
     tags: ["AI", "Automation", "Claude Code", "Subagents", "CLAUDE.md"],
     readingTime: 8,
     content: (
@@ -227,8 +226,6 @@ const allPosts: Post[] = [
 
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mt-12 mb-6">Today's Actual Session (Copy-Pasted)</h2>
         
-        <img src="/claude-code-session.png" alt="Claude Code session showing subagents in action" className="rounded-lg border border-border mb-4" />
-        
         <CodeBlock>
 {`⏺ vault-navigator(Analyze vault structure)
   ⎿ Done (10 tool uses · 43.2k tokens · 1m 3.8s)
@@ -244,8 +241,6 @@ const allPosts: Post[] = [
         <p className="mb-8">
           It created actual documents. With correct frontmatter. In the right folders. With proper linking.
         </p>
-
-        <img src="/knowledge-graph.png" alt="Knowledge graph visualization showing interconnected documents" className="rounded-lg border border-border mb-8" />
 
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mt-12 mb-6">What I've Learned (Round 2)</h2>
         
