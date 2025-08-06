@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { posts, getAllTags, searchPosts, getPostsByTag } from "@/lib/posts"
 import HeroBackground from "@/components/hero-background"
+import ASCIIHero from "@/components/ascii-hero"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Search, Clock, Hash, X } from "lucide-react"
@@ -34,25 +35,9 @@ export default function HomePage() {
   
   return (
     <>
-      {/* Hero section with animated background */}
-      <section className="relative flex items-center justify-center pt-20 pb-10 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-14 overflow-hidden">
-        <HeroBackground />
-        
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          {/* Main tagline with creative typography */}
-          <h1 className="relative">
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-tight">
-              A <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-lime-600">design-focused</span> blog.
-            </span>
-            <span className="block text-sm sm:text-base md:text-lg lg:text-xl font-light text-muted-foreground mt-1 sm:mt-2">
-              Exploring <span className="font-semibold text-foreground">AI</span>,
-              <span className="font-semibold text-foreground"> creativity</span>
-              <span className="text-sm sm:text-base md:text-lg mx-0.5">&</span>
-              the <span className="italic">details</span> that
-              <span className="inline-block ml-1 bg-lime-400 text-black px-1.5 py-0.5 text-xs sm:text-sm font-bold transform -rotate-1">matter</span>.
-            </span>
-          </h1>
-        </div>
+      {/* Hero section with animated ASCII art */}
+      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24 lg:pt-28">
+        <ASCIIHero />
       </section>
 
       {/* Blog posts section */}
