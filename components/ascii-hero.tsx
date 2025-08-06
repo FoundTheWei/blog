@@ -213,7 +213,7 @@ export default function ASCIIHero() {
         {displayPattern.map((line, i) => (
           <div 
             key={i} 
-            className="whitespace-pre text-neutral-200 hover:text-lime-400 transition-all duration-300"
+            className="whitespace-pre text-lime-500 hover:text-lime-400 transition-all duration-300"
             style={{
               animation: isPlaying ? `gentle-float ${4 + (i * 0.5)}s ease-in-out infinite` : 'none',
               animationDelay: `${i * 0.15}s`,
