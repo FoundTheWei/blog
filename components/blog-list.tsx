@@ -24,11 +24,15 @@ export default function BlogList({ posts, tags }: BlogListProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   
+  // Separate README from regular posts
+  const readmePost = posts.find(post => post.title.toLowerCase().includes('readme'))
+  const regularPosts = posts.filter(post => !post.title.toLowerCase().includes('readme'))
+  
   // Filter posts based on search and tag
-  let filteredPosts = posts
+  let filteredPosts = regularPosts
   if (searchQuery) {
     const lowercaseQuery = searchQuery.toLowerCase()
-    filteredPosts = posts.filter(post => 
+    filteredPosts = regularPosts.filter(post => 
       post.title.toLowerCase().includes(lowercaseQuery) ||
       post.excerpt.toLowerCase().includes(lowercaseQuery) ||
       post.tags?.some(tag => tag.toLowerCase().includes(lowercaseQuery))
@@ -49,6 +53,44 @@ export default function BlogList({ posts, tags }: BlogListProps) {
   
   return (
     <>
+      {/* README Section */}
+      {readmePost && (
+        <div className="mb-12">
+          <Link href={`/blog/${readmePost.slug}`} className="group block">
+            <div className="p-6 sm:p-8 bg-gradient-to-r from-neutral-900 to-black border-2 border-lime-400/20 rounded-lg hover:border-lime-400/40 transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-lime-400 font-mono text-sm">README.md</span>
+                <span className="text-xs text-neutral-500 uppercase tracking-wider">Start Here</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight tracking-tight mb-3 text-white">
+                {readmePost.title.replace('README.md: ', '')}
+              </h2>
+              <p className="text-neutral-300 text-base sm:text-lg leading-relaxed mb-4">
+                {readmePost.excerpt}
+              </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3 text-neutral-400 text-sm">
+                  {readmePost.readingTime && (
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {readmePost.readingTime} min read
+                    </span>
+                  )}
+                </div>
+                <span className="text-lime-400 group-hover:translate-x-2 transition-transform">→</span>
+              </div>
+            </div>
+          </Link>
+        </div>
+      )}
+
+      {/* Separator */}
+      <div className="mb-8 flex items-center gap-4">
+        <div className="flex-1 h-px bg-neutral-800"></div>
+        <span className="text-xs text-neutral-600 uppercase tracking-wider">Posts</span>
+        <div className="flex-1 h-px bg-neutral-800"></div>
+      </div>
+
       {/* Search and filter controls */}
       <div className="mb-8 space-y-4">
         {/* Search bar */}
@@ -91,12 +133,12 @@ export default function BlogList({ posts, tags }: BlogListProps) {
           <div>
             {hasFilters ? (
               <span>
-                Showing {filteredPosts.length} of {posts.length} posts
+                Showing {filteredPosts.length} of {regularPosts.length} posts
                 {selectedTag && <span> tagged with "{selectedTag}"</span>}
                 {searchQuery && <span> matching "{searchQuery}"</span>}
               </span>
             ) : (
-              <span>{posts.length} posts</span>
+              <span>{regularPosts.length} posts</span>
             )}
           </div>
           {hasFilters && (
