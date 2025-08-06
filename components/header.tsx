@@ -12,6 +12,9 @@ export default function Header() {
             <Link href="/">
               <span className="link-underline link-underline-black">Posts</span>
             </Link>
+            <Link href="/commits">
+              <span className="link-underline link-underline-black">Commits</span>
+            </Link>
             <Link href="/about">
               <span className="link-underline link-underline-black">About</span>
             </Link>
