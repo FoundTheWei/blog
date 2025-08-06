@@ -23,10 +23,11 @@ npm run lint       # Run Next.js linting (currently ignores errors in config)
 ## Architecture
 
 ### Blog Post System
-- **Posts are defined in `/lib/posts.tsx`** as React components, not markdown files
-- Each post is a JavaScript object with `title`, `date`, `excerpt`, `tags`, `readingTime`, and JSX `content`
+- **Posts are stored in `/content/posts/`** as individual markdown files with frontmatter
+- Each post is a `.md` file with YAML frontmatter containing `title`, `date`, `excerpt`, `tags`, `readingTime`
 - Posts are automatically sorted by date (newest first)
-- Helper functions: `searchPosts()`, `getPostsByTag()`, `getAllTags()`
+- Markdown processing: `gray-matter` for frontmatter, `react-markdown` for rendering
+- Helper functions in `/lib/markdown.ts`: `getAllPosts()`, `getPostBySlug()`, `searchPosts()`, `getPostsByTag()`, `getAllTags()`
 
 ### Key Components
 

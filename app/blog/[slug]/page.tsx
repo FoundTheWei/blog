@@ -1,23 +1,20 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
-import { posts } from "@/lib/posts"
-import type { Post } from "@/lib/posts"
+import { getPostBySlug, getAllPosts } from "@/lib/markdown"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { ArrowLeft, ArrowRight, Clock, Calendar, Hash } from "lucide-react"
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export async function generateStaticParams() {
+  const posts = getAllPosts()
   return posts.map((post) => ({
     slug: post.slug,
   }))
 }
 
-function getPostBySlug(slug: string): Post | undefined {
-  return posts.find((post) => post.slug === slug)
-}
-
 function getAdjacentPosts(currentSlug: string) {
+  const posts = getAllPosts()
   const currentIndex = posts.findIndex((post) => post.slug === currentSlug)
   const prevPost = currentIndex > 0 ? posts[currentIndex - 1] : null
   const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null
@@ -39,18 +36,6 @@ export default function BlogPostPage({
 
   return (
     <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
-      {post.heroImage && (
-        <div className="w-full h-[40vh] sm:h-[60vh] relative mb-12">
-          <Image
-            src={post.heroImage || "/placeholder.svg"}
-            alt={`Hero image for ${post.title}`}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      )}
-
       <article className="max-w-3xl mx-auto px-4">
         {/* Back to blog link */}
         <Link 
@@ -100,7 +85,24 @@ export default function BlogPostPage({
           )}
         </header>
 
-        <div className="prose prose-lg max-w-none mx-auto">{post.content}</div>
+        <div className="prose prose-lg max-w-none mx-auto dark:prose-invert 
+                        prose-headings:tracking-tight prose-headings:font-bold
+                        prose-h2:text-2xl sm:prose-h2:text-3xl
+                        prose-h3:text-xl sm:prose-h3:text-2xl
+                        prose-p:text-muted-foreground prose-p:leading-relaxed
+                        prose-a:text-lime-500 dark:prose-a:text-lime-400 prose-a:no-underline hover:prose-a:underline
+                        prose-strong:text-foreground
+                        prose-code:text-lime-600 dark:prose-code:text-lime-400 prose-code:bg-neutral-100 dark:prose-code:bg-neutral-900 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                        prose-pre:bg-neutral-100 dark:prose-pre:bg-neutral-900
+                        prose-blockquote:border-l-lime-500 dark:prose-blockquote:border-l-lime-400 prose-blockquote:text-muted-foreground
+                        prose-th:text-foreground prose-td:text-muted-foreground
+                        prose-table:border prose-table:border-border
+                        prose-li:text-muted-foreground
+                        prose-img:rounded-lg prose-img:shadow-lg">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {post.content}
+          </ReactMarkdown>
+        </div>
 
         {/* Navigation between posts */}
         <nav className="mt-16 pt-8 border-t border-border">
