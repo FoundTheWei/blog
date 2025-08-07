@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { getPostBySlug, getAllPosts } from "@/lib/markdown"
+import { formatPostDate } from "@/lib/dates"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, ArrowRight, Clock, Calendar, Hash } from "lucide-react"
 import ReactMarkdown from 'react-markdown'
@@ -55,11 +56,7 @@ export default async function BlogPostPage({
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
             <span className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {formatPostDate(post.date)}
             </span>
             {post.readingTime && (
               <span className="flex items-center gap-1">

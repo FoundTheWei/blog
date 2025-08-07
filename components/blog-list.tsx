@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Search, Clock, Hash, X } from "lucide-react"
+import { formatPostDate } from "@/lib/dates"
 
 interface Post {
   slug: string
@@ -181,11 +182,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
                     
                     <div className="flex items-center gap-3 text-muted-foreground text-xs sm:text-sm mb-3">
                       <span>
-                        {new Date(post.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {formatPostDate(post.date)}
                       </span>
                       {post.readingTime && (
                         <>

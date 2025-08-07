@@ -41,6 +41,13 @@ npm run lint       # Run Next.js linting (currently ignores errors in config)
 - Markdown processing: `gray-matter` for frontmatter, `react-markdown` for rendering
 - Helper functions in `/lib/markdown.ts`: `getAllPosts()`, `getPostBySlug()`, `searchPosts()`, `getPostsByTag()`, `getAllTags()`
 
+### Date Handling System
+- **Centralized date management in `/lib/dates.ts`** ensures consistency across all pages
+- Dates in frontmatter MUST use `YYYY-MM-DD` format (e.g., `date: "2025-08-07"`)
+- All dates parsed as UTC to prevent timezone issues
+- Consistent "Month Day, Year" display format everywhere
+- See `/docs/date-handling-system.md` for detailed documentation
+
 ### Key Components
 
 **ASCII Hero (`/components/ascii-hero.tsx`)**
@@ -65,6 +72,25 @@ npm run lint       # Run Next.js linting (currently ignores errors in config)
 ```bash
 git push origin master:main  # Push local master to remote main
 ```
+
+## Creating New Blog Posts
+
+To add a new blog post:
+1. Create a new `.md` file in `/content/posts/`
+2. Add frontmatter with REQUIRED fields:
+```yaml
+---
+title: "Your Post Title"
+date: "2025-08-15"  # MUST be YYYY-MM-DD format
+excerpt: "Brief description for listings"
+tags: ["tag1", "tag2"]
+readingTime: 5  # estimated minutes
+---
+
+Your markdown content here...
+```
+
+**CRITICAL**: The `date` field MUST be in `YYYY-MM-DD` format (e.g., "2025-08-15"). Any other format will cause date display issues.
 
 ## Configuration Notes
 
